@@ -3,16 +3,10 @@ const { createClient } = require('redis');
 const fetch = require('node-fetch');
 
 const pool = new Pool({
-  host: process.env.db_hostname || process.env.DB_HOST || 'database',
-  port: process.env.db_port || process.env.DB_PORT || 5432,
-  user: process.env.db_user || process.env.DB_USER || 'db',
-  password: process.env.db_password || process.env.DB_PASSWORD,
-  database: process.env.db_dbName || process.env.DB_NAME || 'db',
+  connectionString: process.env.DATABASE_URL,
 });
 
-const redisUrl = process.env.cache_connectionString ||
-  `redis://${process.env.cache_hostname || process.env.REDIS_HOST || 'cache'}:${process.env.cache_port || process.env.REDIS_PORT || 6379}`;
-const redis = createClient({ url: redisUrl });
+const redis = createClient({ url: process.env.REDIS_URL });
 redis.on('error', (err) => console.error('Redis error', err));
 
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
