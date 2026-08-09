@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shipnotes — real changelogs from real commits</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="bg-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <span class="brand-mark">&#9670;</span>
+        <span>Shipnotes</span>
+      </div>
+      <p class="tagline">Paste a public GitHub repo. Get a real changelog from its real commits.</p>
+    </header>
+
+    <section class="input-card">
+      <div class="chips" id="chips"></div>
+      <form id="repo-form">
+        <input type="text" id="repo-input" placeholder="owner/repo, e.g. facebook/react" autocomplete="off" />
+        <button type="submit" id="generate-btn">Generate</button>
+      </form>
+    </section>
+
+    <section id="status-area" class="status-area hidden">
+      <div class="status-steps">
+        <div class="step" data-step="queued">Queued</div>
+        <div class="step" data-step="fetching">Fetching commits</div>
+        <div class="step" data-step="categorizing">Categorizing</div>
+        <div class="step" data-step="done">Done</div>
+      </div>
+    </section>
+
+    <section id="result-area" class="result-area hidden">
+      <div class="result-header">
+        <h2 id="result-title"></h2>
+        <button id="copy-btn">Copy changelog</button>
+      </div>
+      <p id="announcement" class="announcement"></p>
+
+      <div class="changelog-grid">
+        <div class="col">
+          <h3 class="col-title features">Features</h3>
+          <ul id="list-features"></ul>
+        </div>
+        <div class="col">
+          <h3 class="col-title fixes">Fixes</h3>
+          <ul id="list-fixes"></ul>
+        </div>
+        <div class="col">
+          <h3 class="col-title breaking">Breaking</h3>
+          <ul id="list-breaking"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="history-area">
+      <h3>Recent runs</h3>
+      <div id="history-list" class="history-list"></div>
+    </section>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

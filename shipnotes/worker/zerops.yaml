@@ -1,0 +1,11 @@
+zerops:
+  - setup: worker
+    build:
+      base: nodejs@20
+      buildCommands:
+        - npm install
+      deployFiles:
+        - .
+    run:
+      base: nodejs@20
+      start: npm start
