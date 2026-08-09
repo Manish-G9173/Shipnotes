@@ -1,0 +1,46 @@
+zerops:
+  - setup: api
+    build:
+      base: nodejs@20
+      buildCommands:
+        - cd api && npm install
+      deployFiles:
+        - api/~
+    run:
+      base: nodejs@20
+      start: npm start
+      workingDir: api
+      ports:
+        - port: 3000
+          httpSupport: true
+      envVariables:
+        PORT: 3000
+
+  - setup: worker
+    build:
+      base: nodejs@20
+      buildCommands:
+        - cd worker && npm install
+      deployFiles:
+        - worker/~
+    run:
+      base: nodejs@20
+      start: npm start
+      workingDir: worker
+
+  - setup: frontend
+    build:
+      base: nodejs@20
+      buildCommands:
+        - cd frontend && npm install
+      deployFiles:
+        - frontend/~
+    run:
+      base: nodejs@20
+      start: npm start
+      workingDir: frontend
+      ports:
+        - port: 3000
+          httpSupport: true
+      envVariables:
+        PORT: 3000
