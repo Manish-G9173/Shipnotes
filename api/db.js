@@ -1,14 +1,9 @@
 const { Pool } = require('pg');
 
-// Zerops injects PostgreSQL connection details as env vars on the
-// "database" service. hstDb / port / user / pass / dbName are the
-// standard Zerops PostgreSQL env var names.
+// DATABASE_URL is mapped in zerops.yml from the "database" service's
+// auto-generated connectionString variable.
 const pool = new Pool({
-  host: process.env.db_hostname || process.env.DB_HOST || 'database',
-  port: process.env.db_port || process.env.DB_PORT || 5432,
-  user: process.env.db_user || process.env.DB_USER || 'db',
-  password: process.env.db_password || process.env.DB_PASSWORD,
-  database: process.env.db_dbName || process.env.DB_NAME || 'db',
+  connectionString: process.env.DATABASE_URL,
 });
 
 async function initSchema() {
