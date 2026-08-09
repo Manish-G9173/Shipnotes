@@ -25,7 +25,7 @@ No login. No signup. Paste a repo, watch it work.
 
 ```
                     ┌─────────────┐
-    judge's browser │  frontend   │  static UI, live job status
+                    │  frontend   │  static UI, live job status
                     └──────┬──────┘
                            │ HTTP
                     ┌──────▼──────┐
