@@ -10,11 +10,9 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
-// Zerops injects Valkey/Redis connection details on the "cache" service.
-const redisUrl = process.env.cache_connectionString ||
-  `redis://${process.env.cache_hostname || process.env.REDIS_HOST || 'cache'}:${process.env.cache_port || process.env.REDIS_PORT || 6379}`;
-
-const redis = createClient({ url: redisUrl });
+// REDIS_URL is mapped in zerops.yml from the "cache" service's
+// auto-generated connectionString variable.
+const redis = createClient({ url: process.env.REDIS_URL });
 redis.on('error', (err) => console.error('Redis error', err));
 
 const PRESET_REPOS = [
